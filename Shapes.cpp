@@ -14,13 +14,16 @@ Color Shape::shade(Vec& light, const Vec& cam, Ray& r, HitData& h) {
 	return h.color;
 }
 void MyPlane::test(Ray& ray, HitData& hit) {
-	Vec p = { 0,0,1000 };											// point inside plane
+	Vec p = { 0,0,1000 };											         // point inside plane
 	float t = -this->n.Dot(ray.o) / this->n.Dot(ray.d) - this->d;	// calc t were ray and plane intersect
 	Vec td(t*ray.d.x, t*ray.d.y, t*ray.d.z);
-	Vec testHit = ray.o + td;										// testHit is going in plane to be 0
+	Vec testHit = ray.o + td;										         // testHit is going in plane to be 0
 	if (testHit.Dot(this->n) != 0) {
 		return;
 	}
+   if (t < 0 || t > hit.t) {                                      // if object is behind camera OR object is behind old
+      return;
+   }
 	else{
 		// HIT
 		hit.t = t;
@@ -49,7 +52,7 @@ MySphere::MySphere(Vec center, float radius, Color color) {
 void MySphere::test(Ray& ray, HitData& hit) {
 	Vec k = this->center - ray.o;				// Length between sphere center and ray origin
 	float s = ray.d.Dot(k);						// k's projection onto ray.d
-	float k2 = k.Dot(k);						// k2 = k^2
+	float k2 = k.Dot(k);						   // k2 = k^2
 	if (s <= 0 && radius2 < k2) { return; }		// if inside sphere do not hit
 	float variansFromCenter = k2 - pow(s, 2);	// the length^2 between radius of sphere and s
 	if (variansFromCenter > radius2) {	return;}// rejection
