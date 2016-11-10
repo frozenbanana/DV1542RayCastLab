@@ -104,7 +104,26 @@ Vec MySphere::normal(Vec &point) {
 
 /* TRIANGLE */
 void MyTriangle::test(Ray& ray, HitData& hit) {
-	// TO DO
+	Vec e1 = p2 - p1;
+	Vec e2 = p3 - p1;
+	Vec s = ray.o - p1;
+	float detInv = 1 / det(ray.d*-1, e1, e2);
+	if (detInv <= 0) { return; }
+	float t = detInv * det(s, e1, e2);
+	if (hit.t < t) { return; }
+	float u = detInv * det(ray.d*-1, s, e2);
+	float v = detInv * det(ray.d*-1, e1, s);
+	if (u < 0 || u > 1) { return; }
+	if (v < 0 || v > 1) { return; }
+	float w = u - v;
+	if (w < 0 || w > 1) { return; }
+	
+
+	hit.t = t;
+	hit.color = this->c;
+	hit.lastNormal = this->nor;
+	hit.lastShape = this;
+
 }
 Vec MyTriangle::normal(Vec &point) {
 	return this->nor;
@@ -120,16 +139,16 @@ MyTriangle::MyTriangle(Vec _p1, Vec _p2, Vec _p3, Color _color) {
 }
 
 /*    OBB    */
-void MyOBB::test(Ray& ray, HitData& hit);
-Vec MyOBB::normal(Vec& point) {
-	// TODO
-}
-
-// Center point, lenght U vector, length V vector, length W vector, color
-
-MyOBB::MyOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color) {
-	// TODO
-}
-MyOBB::MyOBB(Vec b, float Hu, float Hv, float Hw, Color _color) {
-	// TODO
-}
+//void MyOBB::test(Ray& ray, HitData& hit)
+//Vec MyOBB::normal(Vec& point) {
+//	// TODO
+//}
+//
+//// Center point, lenght U vector, length V vector, length W vector, color
+//
+//MyOBB::MyOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color) {
+//	// TODO
+//}
+//MyOBB::MyOBB(Vec b, float Hu, float Hv, float Hw, Color _color) {
+//	// TODO
+//}

@@ -12,7 +12,7 @@
 #include "Shapes.h"
 #include <assert.h> 
 
-#pragma comment(lib, "shapes.lib")
+//#pragma comment(lib, "shapes.lib")
 
 extern ToScreen* g_ToScreen;
 #define TORAD(X) ((X)*PI/180.0f)
@@ -34,9 +34,9 @@ void buildScene()
 		shapes.push_back(dynamic_cast<Shape*>(new MySphere(Vec(400, 400, 300), 200, Color(100, 100, 0))));
 
 		// two triangles 
-		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 350, 100, 200 }, { 300,100,200 }, { 400,700, 30 }, { 200,0,0 })));
-		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 100,300,0 }, { 150,300,0 }, { 100,100,0 }, { 0,0,255 })));
-		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 150,300,0 }, { 150,100,0 }, { 100,100,0 }, { 0,255,255 })));
+		shapes.push_back(dynamic_cast<Shape*>(new MyTriangle({ 350, 100, 200 }, { 300,100,200 }, { 400,700, 30 }, { 200,0,0 })));
+		shapes.push_back(dynamic_cast<Shape*>(new MyTriangle({ 100,300,0 }, { 150,300,0 }, { 100,100,0 }, { 0,0,255 })));
+		shapes.push_back(dynamic_cast<Shape*>(new MyTriangle({ 150,300,0 }, { 150,100,0 }, { 100,100,0 }, { 0,255,255 })));
 
 
 		float size = 20;
@@ -46,7 +46,7 @@ void buildScene()
 			Vec off { size*2 * i, 700.0, 0.0 };
 			p0.x = cosf(TORAD(i * (90/20.0f))) * size; p0.z = -sinf(TORAD(i * (90/20.0f))) * size;
 			p1.x = -p0.x; p1.z = -p0.z;
-			//shapes.push_back(dynamic_cast<Shape*>(new MTriangle(p0 + off, p1 + off, p2 + off, { 255,255,0 })));
+			shapes.push_back(dynamic_cast<Shape*>(new MyTriangle(p0 + off, p1 + off, p2 + off, { 255,255,0 })));
 		}
 		
 		// one OBB touching the sphere on the side
