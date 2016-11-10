@@ -1,5 +1,20 @@
 #include "Shapes.h"
 
+/* HELP FUNCTIONS  */
+Vec cross(Vec u, Vec v)
+{
+	float e1 = u.y*v.z - v.y*u.z;
+	float e2 = v.x*u.z - u.x*v.z;	// inverted to get e1 -e2 e3
+	float e3 = u.x*v.y - v.x*u.y;
+	Vec crossed = { e1, e2, e3 };
+	return crossed;
+}
+float det(Vec u, Vec v, Vec w) {
+	float det = 0.0f;
+	Vec area = cross(v, w);
+	det = u.Dot(area);
+	return det;
+}
 Color Shape::shade(Vec& light, const Vec& cam, Ray& r, HitData& h) {
 	//float rgb[3];
 	//Color result(rgb[0], rgb[1], rgb[2]);

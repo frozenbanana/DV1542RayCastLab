@@ -165,14 +165,9 @@ public:
 };
 /*    HELP FUNCTIONS    */
 
-Vec cross(Vec u, Vec v)
-{
-	float e1 = u.y*v.z - v.y*u.z;	
-	float e2 = u.x*v.z - v.x*u.z;
-	float e3 = u.x*v.y - v.x*u.y;
-	Vec crossed = { e1, e2, e3 };
-	return crossed;
-}
+Vec cross(Vec u, Vec v);
+float det(Vec u, Vec v, Vec w);
+
 /*		MY SHAPES		*/
 
 class MyPlane : public Shape
