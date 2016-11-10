@@ -31,7 +31,7 @@ void buildScene()
 		shapes.push_back(dynamic_cast<Shape*>(new MyPlane(Vec(0, 0, -1), -1000, Color(0, 30, 30))));
 
 		// a sphere at (400,400,300), with radius 200
-		//shapes.push_back(dynamic_cast<Shape*>(new MySphere(Vec(400, 400, 300), 200, Color(100, 100, 0))));
+		shapes.push_back(dynamic_cast<Shape*>(new MySphere(Vec(400, 400, 300), 200, Color(100, 100, 0))));
 
 		// two triangles 
 		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 350, 100, 200 }, { 300,100,200 }, { 400,700, 30 }, { 200,0,0 })));

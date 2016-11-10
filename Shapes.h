@@ -1,6 +1,6 @@
 #include <math.h>
 #include <memory.h>
-//#include <assert.h>
+#include <assert.h>
 #include <algorithm>
 #include <iostream>
 
@@ -163,8 +163,18 @@ public:
 	MOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
 	MOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
 };
+/*    HELP FUNCTIONS    */
 
+Vec cross(Vec u, Vec v)
+{
+	float e1 = u.y*v.z - v.y*u.z;	
+	float e2 = u.x*v.z - v.x*u.z;
+	float e3 = u.x*v.y - v.x*u.y;
+	Vec crossed = { e1, e2, e3 };
+	return crossed;
+}
 /*		MY SHAPES		*/
+
 class MyPlane : public Shape
 {
 	Vec		n;
@@ -183,4 +193,40 @@ public:
 	void test(Ray& ray, HitData& hit);
 	Vec normal(Vec &point);
 	MySphere(Vec _center, float _radius, Color _color);
+};
+
+class MyTriangle : public Shape
+{
+	Vec p1, p2, p3, nor;
+	Vec edge0, edge1;
+public:
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec &point);
+	MyTriangle(Vec _p1, Vec _p2, Vec _p3, Color _color);
+
+};
+
+class MyOBB : public Shape
+{
+public:
+	Vec Bcenter;
+	Vec Bu;
+	Vec Bv;
+	Vec Bw;
+
+	Vec Pu, Puo;
+	Vec Pv, Pvo;
+	Vec Pw, Pwo;
+
+	float halfBu;
+	float halfBv;
+	float halfBw;
+
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec& point);
+
+	// Center point, lenght U vector, length V vector, length W vector, color
+
+	MyOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
+	MyOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
 };
