@@ -201,27 +201,27 @@ public:
 
 };
 
-//class MyOBB : public Shape
-//{
-//public:
-//	Vec Bcenter;
-//	Vec Bu;
-//	Vec Bv;
-//	Vec Bw;
-//
-//	Vec Pu, Puo;
-//	Vec Pv, Pvo;
-//	Vec Pw, Pwo;
-//
-//	float halfBu;
-//	float halfBv;
-//	float halfBw;
-//
-//	void test(Ray& ray, HitData& hit);
-//	Vec normal(Vec& point);
-//
-//	// Center point, lenght U vector, length V vector, length W vector, color
-//
-//	MyOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
-//	MyOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
-//};
+class MyOBB : public Shape
+{
+public:
+	Vec Bcenter;
+	Vec Bu;
+	Vec Bv;
+	Vec Bw;
+
+	Vec Pu, Puo;
+	Vec Pv, Pvo;
+	Vec Pw, Pwo;
+
+	float halfBu;
+	float halfBv;
+	float halfBw;
+
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec& point);
+
+	// Center point, lenght U vector, length V vector, length W vector, color
+
+	MyOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
+	MyOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
+};
