@@ -21,6 +21,7 @@ extern ToScreen* g_ToScreen;
 std::vector<Shape*> shapes;
 
 
+
 // adds all the shapes to a vector, that is used in the Update function.
 void buildScene()
 {

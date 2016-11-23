@@ -28,18 +28,18 @@ Color Shape::shade(Vec& light, const Vec& cam, Ray& r, HitData& h) {
 	if (angle < 0) {									// make angle stay positive
 		angle = 0;
 	}
-	// 1.0 is the diffuse color
-	colorCheck = (this->c.r * (1.0f * angle));
+	// 0.19* objects color constant is the ambient effect
+	colorCheck = (this->c.r * (1.0f * angle + 0.19f));
 	if (colorCheck > 255)
 		colorCheck = 255;
 	h.color.r = colorCheck;
 
-	colorCheck = (this->c.g * (1.0f * angle));
+	colorCheck = (this->c.g * (1.0f * angle+ 0.19f));
 	if (colorCheck > 255)
 		colorCheck = 255;
 	h.color.g = colorCheck;
 
-	colorCheck = (this->c.b * (1.0f * angle));
+	colorCheck = (this->c.b * (1.0f * angle + 0.19f));
 	if (colorCheck > 255)
 		colorCheck = 255;
 	h.color.b = colorCheck;
